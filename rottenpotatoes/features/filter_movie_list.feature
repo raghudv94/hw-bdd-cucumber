@@ -23,13 +23,9 @@ Background: movies have been added to database
   Then 10 seed movies should exist
 
 Scenario: restrict to movies with 'PG' or 'R' ratings
-  # enter step(s) to check the 'PG' and 'R' checkboxes
   When I check the following ratings: PG,R
-  # enter step(s) to uncheck all other checkboxes
   And I uncheck the following ratings: G,PG-13,NC-17
-  # enter step to "submit" the search form on the homepage
   And I press "ratings_submit"
-  # enter step(s) to ensure that PG and R movies are visible
   Then I should see the following movies exits:
   | title                   | rating | release_date |
   | The Terminator          | R      | 26-Oct-1984  |
@@ -37,7 +33,6 @@ Scenario: restrict to movies with 'PG' or 'R' ratings
   | Amelie                  | R      | 25-Apr-2001  |
   | The Incredibles         | PG     | 5-Nov-2004   |
   | Raiders of the Lost Ark | PG     | 12-Jun-1981  |
-  # enter step(s) to ensure that other movies are not visible
   And following movies not be present:
   | title                   | rating | release_date |
   | Aladdin                 | G      | 25-Nov-1992  |
@@ -50,4 +45,3 @@ Scenario: all ratings selected
   When I check the following ratings: PG,R,G,PG-13,NC-17
   And I press "ratings_submit"
   Then I should see all of the movies
-  # see assignment

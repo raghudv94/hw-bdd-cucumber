@@ -17,7 +17,6 @@ end
 
 Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
   #  ensure that that e1 occurs before e2.
-  #  page.body is the entire content of the page as a string.
   expect(page.text.index(e1)).to be < page.text.index(e2)
 end
 
@@ -38,7 +37,6 @@ When /I (un)?check the following ratings: (.*)/ do |uncheck, rating_list|
       step %{I check "ratings_#{rating}"}
     end
   end
-  #fail "Unimplemented"
 end
 
 Then /.*I should see the following movies exits.*/ do |movies_table|
