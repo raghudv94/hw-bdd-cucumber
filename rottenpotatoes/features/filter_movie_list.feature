@@ -38,7 +38,7 @@ Scenario: restrict to movies with 'PG' or 'R' ratings
   | The Incredibles         | PG     | 5-Nov-2004   |
   | Raiders of the Lost Ark | PG     | 12-Jun-1981  |
   # enter step(s) to ensure that other movies are not visible
-  And I should not see the following movies exists:
+  And following movies not be present:
   | title                   | rating | release_date |
   | Aladdin                 | G      | 25-Nov-1992  |
   | The Help                | PG-13  | 10-Aug-2011  |
@@ -47,4 +47,7 @@ Scenario: restrict to movies with 'PG' or 'R' ratings
   | Chicken Run             | G      | 21-Jun-2000  |
 
 Scenario: all ratings selected
+  When I check the following ratings: PG,R,G,PG-13,NC-17
+  And I press "ratings_submit"
+  Then I should see all of the movies
   # see assignment

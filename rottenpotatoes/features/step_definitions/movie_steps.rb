@@ -41,7 +41,19 @@ When /I (un)?check the following ratings: (.*)/ do |uncheck, rating_list|
   #fail "Unimplemented"
 end
 
-Then /I should see all the movies/ do
+Then /.*I should see the following movies exits.*/ do |movies_table|
+  movies_table.hashes.each do |movie|
+    expect(page).to have_text(movie['title'])
+  end
+end
+
+Then /.*following movies not be present.*/ do |movies_table|
+  movies_table.hashes.each do |movie|
+    expect(page).not_to have_text(movie['title'])
+  end
+end
+
+Then /I should see all of the movies/ do
   # Make sure that all the movies in the app are visible in the table
-  fail "Unimplemented"
+  page.all('table#movies tr').count.should == 11
 end
